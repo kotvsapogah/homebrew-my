@@ -42,10 +42,7 @@ class Llvm35 < Formula
 
         args = [
             "--prefix=#{install_prefix}",
-            "--enable-optimized",
-            "--enable-shared",
-            "--disable-assertions",
-            "--disable-bindings"
+            "--disable-assertions"
         ]
 
         system './configure', *args
