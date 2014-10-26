@@ -9,6 +9,7 @@ class Eclipse < Formula
         sha1 'dfa24dcf9917cc4a5338ed105750e50e68ea64b2'
     elsif os == "Linux"
         url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz&r=1'
+        sha1 '161640688a8d4c0523e14ecb7017813dd33a99cd'
     end
     version 'luna-SR1'
 
