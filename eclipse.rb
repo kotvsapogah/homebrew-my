@@ -7,7 +7,7 @@ class Eclipse < Formula
     if os == "Darwin"
         url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-macosx-cocoa-x86_64.tar.gz&r=1'
         sha1 'dfa24dcf9917cc4a5338ed105750e50e68ea64b2'
-    elsif ps == "Linux"
+    elsif os == "Linux"
         url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz&r=1'
     end
     version 'luna-SR1'
