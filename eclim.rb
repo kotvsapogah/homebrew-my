@@ -11,8 +11,8 @@ class Eclim < Formula
 
     def install
         for dir in %W[
-            "autoload" "doc" "plugin" "python"
-            "colors" "ftdetect" "ftplugin" "indent" "compiler" "after"]
+            autoload doc plugin python
+            colors ftdetect ftplugin indent compiler after]
             system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/#{dir}"
         end
 
