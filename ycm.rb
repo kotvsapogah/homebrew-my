@@ -17,7 +17,7 @@ class Ycm < Formula
             ext = "dylib"
         elsif os == "Linux"
             ext = "so"
-        fi
+        end
         python_prefix = `#{ENV['HOME']}/packages/bin/python2 -c "import sys; print sys.prefix"`.chomp
         ohai "Python prefix: ", python_prefix
 
