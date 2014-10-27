@@ -5,9 +5,7 @@ class Ycm < Formula
     url "https://github.com/Valloric/YouCompleteMe", :using => :git
     version "3.5.0"
 
-    depends_on "cmake"
     depends_on "kotvsapogah/my/llvm35"
-
 
     def install
         system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/{autoload,doc,plugin,python,colors,ftdetect,ftplugin,indent,compiler,after}"
