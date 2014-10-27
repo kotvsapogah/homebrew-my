@@ -10,7 +10,12 @@ class Eclim < Formula
     depends_on "eclipse"
 
     def install
-        system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/{autoload,doc,plugin,python,colors,ftdetect,ftplugin,indent,compiler,after}"
+        for dir in %W[
+            "autoload" "doc" "plugin" "python"
+            "colors" "ftdetect" "ftplugin" "indent" "compiler" "after"]
+            system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/#{dir}"
+        end
+
         system "chmod +x org.eclim/nailgun/configure"
         system "ant", 
             "-Declipse.home=#{HOMEBREW_PREFIX}/opt/eclipse", 

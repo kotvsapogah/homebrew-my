@@ -8,7 +8,11 @@ class Ycm < Formula
     depends_on "kotvsapogah/my/llvm35"
 
     def install
-        system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/{autoload,doc,plugin,python,colors,ftdetect,ftplugin,indent,compiler,after}"
+        for dir in %W[
+            "autoload" "doc" "plugin" "python"
+            "colors" "ftdetect" "ftplugin" "indent" "compiler" "after"]
+            system "mkdir", "-p", "#{HOMEBREW_PREFIX}/share/vim/vimfiles/#{dir}"
+        end
 
         os = `uname -s`.chomp
         if os == "Darwin"
