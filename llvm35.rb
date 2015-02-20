@@ -5,12 +5,12 @@ class Llvm35 < Formula
     homepage  'http://llvm.org/'
 
     stable do
-        url 'http://llvm.org/releases/3.5.0/llvm-3.5.0.src.tar.xz'
-        sha1 '58d817ac2ff573386941e7735d30702fe71267d5'
+        url 'http://llvm.org/releases/3.5.1/llvm-3.5.1.src.tar.xz'
+        sha1 '79638cf00584b08fd6eeb1e73ea69b331561e7f6'
 
         resource 'clang' do
-            url 'http://llvm.org/releases/3.5.0/cfe-3.5.0.src.tar.xz'
-            sha1 '834cee2ed8dc6638a486d8d886b6dce3db675ffa'
+            url 'http://llvm.org/releases/3.5.1/cfe-3.5.1.src.tar.xz'
+            sha1 '39d79c0b40cec548a602dcac3adfc594b18149fe'
         end
     end
 
@@ -19,7 +19,7 @@ class Llvm35 < Formula
     depends_on "libtool"  => :build
     depends_on "pkg-config" => :build
 
-    def ver; '3.5'; end # version suffix
+    def ver; '3.5.1'; end # version suffix
 
     # LLVM installs its own standard library which confuses stdlib checking.
     #cxxstdlib_check :skip
