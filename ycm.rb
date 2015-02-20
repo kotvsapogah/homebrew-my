@@ -3,7 +3,7 @@ require 'formula'
 class Ycm < Formula
     homepage "https://github.com/Valloric/YouCompleteMe"
     url "https://github.com/Valloric/YouCompleteMe", :using => :git
-    version "3.5.0"
+    version "3.5.1"
 
     depends_on "kotvsapogah/my/llvm35"
 
@@ -23,7 +23,7 @@ class Ycm < Formula
         python_prefix = `#{ENV['HOME']}/packages/bin/python2 -c "import sys; print sys.prefix"`.chomp
         ohai "Python prefix: ", python_prefix
 
-        clang_path = Formula["llvm35"].opt_prefix/"lib/llvm-3.5"
+        clang_path = Formula["llvm35"].opt_prefix/"lib/llvm-3.5.1"
 
         mkdir "tmp_build"
         cd "tmp_build"
