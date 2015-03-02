@@ -6,7 +6,7 @@ class Llvm < Formula
 
     stable do
         url 'http://llvm.org/releases/3.6.0/llvm-3.6.0.src.tar.xz'
-        sha1 'f97f9d604b660c1695c054e134260d926e8ef4ee'
+        sha1 '6eb2b7381d924bb3f267281c9058c817d825d824'
 
         resource 'clang' do
             url 'http://llvm.org/releases/3.6.0/cfe-3.6.0.src.tar.xz'
