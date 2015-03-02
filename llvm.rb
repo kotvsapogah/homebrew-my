@@ -25,7 +25,7 @@ class Llvm < Formula
         clang_buildpath = buildpath/'tools/clang'
         clang_buildpath.install resource('clang')
 
-        install_prefix = lib/"llvm-#{ver}"
+        install_prefix = lib/"llvm"
 
         #gmp_prefix = Formula["gmp"].opt_prefix
 
