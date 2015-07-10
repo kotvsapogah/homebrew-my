@@ -20,11 +20,12 @@ class Ycm < Formula
         elsif os == "Linux"
             ext = "so"
         end
-        python_prefix = `python2 -c "import sys; print sys.prefix"`.chomp
-        python_bindir = `from distutils import sysconfig; print sysconfig.get_config_var("BINDIR")`.chomp
-        python_includedir = `from distutils import sysconfig; print sysconfig.get_python_inc()`.chomp
-        python_libdir = `from distutils import sysconfig; print sysconfig.get_config_var("LIBDIR")`.chomp
-        python_version = `from distutils import sysconfig; print sysconfig.get_config_var("VERSION")`.chomp
+        py=`which python2`.chomp
+        python_prefix = `#{py} -c "import sys; print sys.prefix"`.chomp
+        python_bindir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("BINDIR")"`.chomp
+        python_includedir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
+        python_libdir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("LIBDIR")"`.chomp
+        python_version = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("VERSION")"`.chomp
         python_library = "#{python_libdir}/libpython#{python_version}.#{ext}" 
         ohai "Python prefix: ", python_prefix
         ohai "Python bindir: ", python_bindir
