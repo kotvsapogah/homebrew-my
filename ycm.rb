@@ -20,15 +20,14 @@ class Ycm < Formula
         elsif os == "Linux"
             ext = "so"
         end
-        py=`which python2`.chomp
-        python_prefix = `#{py} -c "import sys; print sys.prefix"`.chomp
-        python_bindir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("BINDIR")"`.chomp
-        python_includedir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
-        python_libdir = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("LIBDIR")"`.chomp
-        python_version = `#{py} -c "from distutils import sysconfig; print sysconfig.get_config_var("VERSION")"`.chomp
+
+        python = "/usr/bin/python2.7"
+        python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
+        python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
+        python_libdir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('LIBDIR')"`.chomp
+        python_version = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('VERSION')"`.chomp
         python_library = "#{python_libdir}/libpython#{python_version}.#{ext}" 
         ohai "Python prefix: ", python_prefix
-        ohai "Python bindir: ", python_bindir
         ohai "Python include: ", python_includedir
         ohai "Python library: ", python_library
 
@@ -38,7 +37,7 @@ class Ycm < Formula
         cd "tmp_build"
         system Formula["cmake"].bin/"cmake", "-G", "Unix Makefiles",
             "-DPATH_TO_LLVM_ROOT=#{clang_path}",
-            "-DPYTHON_EXECUTABLE=#{python_bindir}/python",
+            "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
             "../third_party/ycmd/cpp"
