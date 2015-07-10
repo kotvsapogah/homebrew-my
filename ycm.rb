@@ -5,6 +5,7 @@ class Ycm < Formula
     url "https://github.com/Valloric/YouCompleteMe", :using => :git
     version "3.6.0"
 
+    depends_on "homebrew/dupes/zlib" => :build
     depends_on "cmake" => :build
     depends_on "kotvsapogah/my/llvm"
 
