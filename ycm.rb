@@ -35,7 +35,7 @@ class Ycm < Formula
 
         mkdir "tmp_build"
         cd "tmp_build"
-        system Formula["cmake"].bin/"cmake", "-G", "Unix Makefiles",
+        system "cmake", "-G", "Unix Makefiles",
             "-DPATH_TO_LLVM_ROOT=#{clang_path}",
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
