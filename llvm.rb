@@ -5,11 +5,11 @@ class Llvm < Formula
     homepage  'http://llvm.org/'
 
     stable do
-        url 'http://llvm.org/releases/3.6.0/llvm-3.6.0.src.tar.xz'
+        url 'http://llvm.org/releases/3.7.0/llvm-3.7.0.src.tar.xz'
         sha1 '6eb2b7381d924bb3f267281c9058c817d825d824'
 
         resource 'clang' do
-            url 'http://llvm.org/releases/3.6.0/cfe-3.6.0.src.tar.xz'
+            url 'http://llvm.org/releases/3.7.0/cfe-3.7.0.src.tar.xz'
             sha1 '06b252867a3d118c95ca279fd3c4ac05f6730551'
         end
     end
@@ -19,7 +19,7 @@ class Llvm < Formula
     depends_on "libtool"  => :build
     depends_on "pkg-config" => :build
 
-    def ver; '3.6.0'; end # version suffix
+    def ver; '3.7.0'; end # version suffix
 
     def install
         clang_buildpath = buildpath/'tools/clang'
