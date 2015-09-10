@@ -37,12 +37,11 @@ class Ycm < Formula
             "-DPATH_TO_LLVM_ROOT=#{clang_path}",
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
-            "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
-            "../third_party/ycmd/cpp"
+            "-DPYTHON_INCLUDE_DIR=#{python_includedir}"
         ]
 
         mktemp do
-            system "cmake", "-G", "Unix Makefiles", *args
+            system "cmake", "-G", "Unix Makefiles", buildpath/"third_party/ycmd/cpp", *args
             system "make", "ycm_support_libs"
         end
 
