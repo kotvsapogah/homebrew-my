@@ -10,7 +10,7 @@ class Llvm < Formula
 
         resource 'clang' do
             url 'http://llvm.org/releases/3.7.0/cfe-3.7.0.src.tar.xz'
-            sha1 '06b252867a3d118c95ca279fd3c4ac05f6730551'
+            sha1 '4ff8100565528b13d99a73f807e9b426c3b3bed9'
         end
     end
 
