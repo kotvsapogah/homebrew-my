@@ -3,7 +3,7 @@ require 'formula'
 class Ycm < Formula
     homepage "https://github.com/Valloric/YouCompleteMe"
     url "https://github.com/Valloric/YouCompleteMe", :using => :git
-    version "3.6.0"
+    version "3.7.0"
 
     depends_on "kotvsapogah/my/llvm"
 
@@ -33,17 +33,19 @@ class Ycm < Formula
 
         clang_path = Formula["llvm"].opt_prefix/"lib/llvm"
 
-        mkdir "tmp_build"
-        cd "tmp_build"
-        system "cmake", "-G", "Unix Makefiles",
+        args = [
             "-DPATH_TO_LLVM_ROOT=#{clang_path}",
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
             "../third_party/ycmd/cpp"
-        system "make", "ycm_support_libs"
-        cd "#{buildpath}"
-        `rm -rf tmp_build`
+        ]
+
+        mktemp do
+            system "cmake", "-G", "Unix Makefiles", *args
+            system "make", "ycm_support_libs"
+        end
+
         (prefix/"share/vim/vimfiles").install Dir["*"]
 
     end
