@@ -27,20 +27,28 @@ class Llvm < Formula
 
         install_prefix = lib/"llvm"
 
-        #gmp_prefix = Formula["gmp"].opt_prefix
-
+        ##gmp_prefix = Formula["gmp"].opt_prefix
+        #args = [
+            #"--prefix=#{install_prefix}",
+            #"--disable-assertions",
+            #"--disable-debug",
+            #"--enable-optimized",
+            #"--disable-threads",
+            #"--disable-shared"
+        #]
+        #system './configure', *args
+        #
         args = [
-            "--prefix=#{install_prefix}",
-            "--disable-assertions",
-            "--disable-debug",
-            "--enable-optimized",
-            "--disable-threads",
-            "--disable-shared"
+            "-DCMAKE_BUILD_TYPE=Release",
+            "-DCMAKE_INSTALL_PREFIX=#{install_prefix}"
         ]
 
-        system './configure', *args
-        system 'make', 'VERBOSE=1'
-        system 'make', 'VERBOSE=1', 'install'
+        ohai "STD CMAKE ARGS", *std_cmake_args
+        mktemp do
+            system "cmake", "-G", "Unix Makefiles", buildpath, *(std_cmake_args + args)
+            system "make"
+            system "make", "install"
+        end
 
         # Link executables to bin and add suffix to avoid conflicts
         Dir.glob(install_prefix/'bin/*') do |exec_path|
