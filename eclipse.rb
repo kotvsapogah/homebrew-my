@@ -5,13 +5,13 @@ class Eclipse < Formula
     homepage 'https://www.eclipse.org'
     os = `uname -s`.chomp
     if os == "Darwin"
-        url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-macosx-cocoa-x86_64.tar.gz&r=1'
-        sha1 'dfa24dcf9917cc4a5338ed105750e50e68ea64b2'
+        url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-java-mars-1-macosx-cocoa-x86_64.tar.gz&r=1'
+        sha1 '962b2984f80b15b38efe69148d2a8941571ea970'
     elsif os == "Linux"
-        url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz&r=1'
-        sha1 '161640688a8d4c0523e14ecb7017813dd33a99cd'
+        url 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-java-mars-1-linux-gtk-x86_64.tar.gz&r=1'
+        sha1 '74cbc500a4ade717e115afb13b3a633f8a4db786'
     end
-    version 'luna-SR1'
+    version 'mars'
 
     def install
         prefix.install Dir["*"]
