@@ -8,6 +8,7 @@ class Ycm < Formula
     #depends_on "kotvsapogah/my/llvm"
     #depends_on "llvm38"
     depends_on "cmake" => :build
+    depends_on "python"
 
     def install
         #for dir in %W[
@@ -23,26 +24,26 @@ class Ycm < Formula
             ext = "so"
         end
 
-        #python = "/usr/bin/python2.7"
-        #python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
-        #python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
-        #python_libdir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('LIBDIR')"`.chomp
-        #python_version = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('VERSION')"`.chomp
-        #python_library = "#{python_libdir}/libpython#{python_version}.#{ext}" 
-        #ohai "Python prefix: ", python_prefix
-        #ohai "Python include: ", python_includedir
-        #ohai "Python library: ", python_library
+        python = "#{HOMEBREW_PREFIX}/bin/python"
+        python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
+        python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
+        python_libdir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('LIBDIR')"`.chomp
+        python_version = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('VERSION')"`.chomp
+        python_library = "#{python_libdir}/libpython#{python_version}.#{ext}" 
+        ohai "Python prefix: ", python_prefix
+        ohai "Python include: ", python_includedir
+        ohai "Python library: ", python_library
 
         #clang_path = Formula["llvm38"].opt_prefix/"lib/llvm-3.8/lib/libclang.#{ext}"
         
         clang_path = var/"libclang.#{ext}"
 
         args = [
-            "-DEXTERNAL_LIBCLANG_PATH=#{clang_path}"
+            "-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
+            "-DPYTHON_EXECUTABLE=#{python}",
+            "-DPYTHON_LIBRARY=#{python_library}",
+            "-DPYTHON_INCLUDE_DIR=#{python_includedir}"
             #"-DPATH_TO_LLVM_ROOT=#{clang_path}"
-            #"-DPYTHON_EXECUTABLE=#{python}",
-            #"-DPYTHON_LIBRARY=#{python_library}",
-            #"-DPYTHON_INCLUDE_DIR=#{python_includedir}"
         ]
 
         mktemp do
