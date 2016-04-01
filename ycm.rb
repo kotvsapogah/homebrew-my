@@ -36,14 +36,15 @@ class Ycm < Formula
 
         #clang_path = Formula["llvm38"].opt_prefix/"lib/llvm-3.8/lib/libclang.#{ext}"
         
-        clang_path = var/"libclang.#{ext}"
+        #clang_path = var/"libclang.#{ext}"
+        clang_path = var/"llvm"
 
         args = [
-            "-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
+            #"-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
-            "-DPYTHON_INCLUDE_DIR=#{python_includedir}"
-            #"-DPATH_TO_LLVM_ROOT=#{clang_path}"
+            "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
+            "-DPATH_TO_LLVM_ROOT=#{clang_path}"
         ]
 
         mktemp do
