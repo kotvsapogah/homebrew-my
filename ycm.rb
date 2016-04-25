@@ -44,8 +44,8 @@ class Ycm < Formula
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
-            #"-DPATH_TO_LLVM_ROOT=#{clang_path}"
-            "-DUSE_SYSTEM_LIBCLANG=ON"
+            "-DPATH_TO_LLVM_ROOT=#{clang_path}"
+            #"-DUSE_SYSTEM_LIBCLANG=ON"
         ]
 
         mktemp do
