@@ -7,8 +7,8 @@ class Ycm < Formula
 
     #depends_on "kotvsapogah/my/llvm"
     #depends_on "llvm38"
-    depends_on "cmake" => :build
-    depends_on "python"
+    #depends_on "cmake" => :build
+    #depends_on "python"
 
     def install
         #for dir in %W[
@@ -24,7 +24,8 @@ class Ycm < Formula
             ext = "so"
         end
 
-        python = "#{HOMEBREW_PREFIX}/bin/python"
+        #python = "#{HOMEBREW_PREFIX}/bin/python"
+        python = "/usr/bin/python2"
         python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
         python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
         python_libdir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('LIBDIR')"`.chomp

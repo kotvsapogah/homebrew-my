@@ -5,12 +5,12 @@ class Llvm < Formula
     homepage  'http://llvm.org/'
 
     stable do
-        url 'http://llvm.org/releases/3.7.0/llvm-3.7.0.src.tar.xz'
-        sha1 '0355c2fe01a8d17c3315069e6f2ef80c281e7dad'
+        url 'http://llvm.org/releases/3.8.0/llvm-3.8.0.src.tar.xz'
+        sha256 '555b028e9ee0f6445ff8f949ea10e9cd8be0d084840e21fbbe1d31d51fc06e46'
 
         resource 'clang' do
-            url 'http://llvm.org/releases/3.7.0/cfe-3.7.0.src.tar.xz'
-            sha1 '4ff8100565528b13d99a73f807e9b426c3b3bed9'
+            url 'http://llvm.org/releases/3.8.0/cfe-3.8.0.src.tar.xz'
+            sha256 '04149236de03cf05232d68eb7cb9c50f03062e339b68f4f8a03b650a11536cf9'
         end
     end
 
@@ -19,7 +19,7 @@ class Llvm < Formula
     depends_on "libtool"  => :build
     depends_on "pkg-config" => :build
 
-    def ver; '3.7.0'; end # version suffix
+    def ver; '3.8.0'; end # version suffix
 
     def install
         clang_buildpath = buildpath/'tools/clang'
@@ -45,9 +45,10 @@ class Llvm < Formula
 
         ohai "STD CMAKE ARGS", *std_cmake_args
         mktemp do
-            system "cmake", "-G", "Unix Makefiles", buildpath, *(std_cmake_args + args)
-            system "make"
-            system "make", "install"
+            #system "cmake", "--build", buildpath, *(std_cmake_args + args)
+            system "cmake", *(args), buildpath
+            system "cmake", "--build", "."
+            system "cmake", "--build", ".", "--target", "install"
         end
 
         # Link executables to bin and add suffix to avoid conflicts
@@ -65,12 +66,6 @@ class Llvm < Formula
 
     test do
         system "#{bin}/llvm-config", "--version"
-    end
-
-    def caveats
-        s = ''
-        s += "Extra tools are installed in #{HOMEBREW_PREFIX}/share/clang."
-        s
     end
 
 end
