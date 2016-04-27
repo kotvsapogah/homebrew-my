@@ -47,7 +47,7 @@ class Llvm < Formula
         mktemp do
             #system "cmake", "--build", buildpath, *(std_cmake_args + args)
             system "cmake", *(args), buildpath
-            system "cmake", "--build", "."
+            system "cmake", "--build", ".", "--", "-j4"
             system "cmake", "--build", ".", "--target", "install"
         end
 
