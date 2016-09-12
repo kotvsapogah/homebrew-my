@@ -25,6 +25,7 @@ class Ycm < Formula
         end
 
         python = "#{HOMEBREW_PREFIX}/bin/python"
+        cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
         #python = "/usr/bin/python2"
         python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
         python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
@@ -50,8 +51,8 @@ class Ycm < Formula
         ]
 
         mktemp do
-            system "cmake", "-G", "Unix Makefiles", var/".vim/bundle/YouCompleteMe/third_party/ycmd/cpp", *args
-            system "cmake", "--build", ".", "--target", "ycm_core"
+            system "#{cmake}", "-G", "Unix Makefiles", var/".vim/bundle/YouCompleteMe/third_party/ycmd/cpp", *args
+            system "#{cmake}", "--build", ".", "--target", "ycm_core"
         end
 
         (prefix/"ycm").install Dir["*"]
