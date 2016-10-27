@@ -3,7 +3,7 @@ require 'formula'
 class Ycm < Formula
     homepage "https://github.com/Valloric/YouCompleteMe"
     url "https://github.com/Valloric/YouCompleteMe", :using => :git
-    version "3.8.0"
+    version "3.9.0"
 
     #depends_on "kotvsapogah/my/llvm"
     #depends_on "llvm38"
