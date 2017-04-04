@@ -39,19 +39,19 @@ class Ycm < Formula
         #clang_path = Formula["llvm38"].opt_prefix/"lib/llvm-3.8/lib/libclang.#{ext}"
         
         #clang_path = var/"libclang.#{ext}"
-        clang_path = var/"llvm"
+        clang_path = opt/"llvm"
 
         args = [
-            #"-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
             "-DPATH_TO_LLVM_ROOT=#{clang_path}"
+            #"-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
             #"-DUSE_SYSTEM_LIBCLANG=ON"
         ]
 
         mktemp do
-            system "#{cmake}", "-G", "Unix Makefiles", var/".vim/bundle/YouCompleteMe/third_party/ycmd/cpp", *args
+            system "#{cmake}", "-G", "Unix Makefiles", var/"YouCompleteMe/third_party/ycmd/cpp", *args
             system "#{cmake}", "--build", ".", "--target", "ycm_core"
         end
 
