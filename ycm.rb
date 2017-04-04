@@ -39,7 +39,10 @@ class Ycm < Formula
         #clang_path = Formula["llvm38"].opt_prefix/"lib/llvm-3.8/lib/libclang.#{ext}"
         
         #clang_path = var/"libclang.#{ext}"
-        clang_path = opt/"llvm"
+        
+        #clang_path = var/"llvm"
+        
+        clang_path = Formula["llvm"].opt_prefix
 
         args = [
             "-DPYTHON_EXECUTABLE=#{python}",
