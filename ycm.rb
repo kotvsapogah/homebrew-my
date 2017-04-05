@@ -2,7 +2,7 @@ require 'formula'
 
 class Ycm < Formula
     homepage "https://github.com/Valloric/YouCompleteMe"
-    url "https://github.com/Valloric/YouCompleteMe", :using => :git
+    url "https://github.com/Valloric/YouCompleteMe", :using => :git, :revision => "f3ccafe3aedee0dc2ec320e3121869785e730bb8" 
     version "3.9.0"
 
     #depends_on "kotvsapogah/my/llvm"
@@ -42,15 +42,16 @@ class Ycm < Formula
         
         #clang_path = var/"llvm"
         
-        clang_path = Formula["llvm"].opt_prefix
+        #clang_path = Formula["llvm"].opt_prefix
 
         args = [
             "-DPYTHON_EXECUTABLE=#{python}",
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
-            "-DPATH_TO_LLVM_ROOT=#{clang_path}"
+            #"-DPATH_TO_LLVM_ROOT=#{clang_path}"
             #"-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
             #"-DUSE_SYSTEM_LIBCLANG=ON"
+            "-DEXTERNAL_LIBCLANG_PATH=/opt/llvm-3.9.1/lib64/libclang.so",
         ]
 
         mktemp do
