@@ -8,7 +8,7 @@ class Ycm < Formula
     #depends_on "kotvsapogah/my/llvm"
     #depends_on "llvm38"
     #depends_on "cmake" => :build
-    depends_on "python"
+    #depends_on "python"
 
     def install
         #for dir in %W[
@@ -55,11 +55,12 @@ class Ycm < Formula
         ]
 
         mktemp do
-            system "#{cmake}", "-G", "Unix Makefiles", var/"YouCompleteMe/third_party/ycmd/cpp", *args
+            #system "#{cmake}", "-G", "Unix Makefiles", var/"YouCompleteMe/third_party/ycmd/cpp", *args
+            system "#{cmake}", "-G", "Unix Makefiles", buildpath/"third_party/ycmd/cpp", *args
             system "#{cmake}", "--build", ".", "--target", "ycm_core"
         end
 
-        (prefix/"ycm").install Dir["*"]
+        prefix.install Dir["*"]
 
     end
 
