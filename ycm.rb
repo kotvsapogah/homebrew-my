@@ -63,8 +63,18 @@ class Ycm < Formula
         mktemp do
              system "#{cmake}", "-G", "Unix Makefiles", buildpath/"third_party/ycmd/cpp", *args
              system "#{cmake}", "--build", ".", "--target", "ycm_core"
-
         end
+
+        mktemp do
+            args = [
+                "-DPYTHON_LIBRARY=#{python_library}",
+                "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
+            ]
+            system "#{cmake}", "-G", "Unix Makefiles", buildpath/"third_party/ycmd/third_party/cregex", *args
+            system "#{cmake}", "--build", ".", "--target", "_regex", "--config", "Release"
+        end
+#cmake -G "<generator>" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex
+
 
 	(prefix/"ycm").install Dir[buildpath/"*"]
 
