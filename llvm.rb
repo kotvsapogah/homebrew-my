@@ -5,12 +5,12 @@ class Llvm < Formula
     homepage  'http://llvm.org/'
 
     stable do
-        url 'http://llvm.org/releases/3.8.0/llvm-3.8.0.src.tar.xz'
-        sha256 '555b028e9ee0f6445ff8f949ea10e9cd8be0d084840e21fbbe1d31d51fc06e46'
+        url 'https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz'
+        sha256 '1ff53c915b4e761ef400b803f07261ade637b0c269d99569f18040f3dcee4408'
 
         resource 'clang' do
-            url 'http://llvm.org/releases/3.8.0/cfe-3.8.0.src.tar.xz'
-            sha256 '04149236de03cf05232d68eb7cb9c50f03062e339b68f4f8a03b650a11536cf9'
+            url 'https://releases.llvm.org/6.0.0/cfe-6.0.0.src.tar.xz'
+            sha256 'e07d6dd8d9ef196cfc8e8bb131cbd6a2ed0b1caf1715f9d05b0f0eeaddb6df32'
         end
     end
 
@@ -19,7 +19,7 @@ class Llvm < Formula
     depends_on "libtool"  => :build
     depends_on "pkg-config" => :build
 
-    def ver; '3.8.0'; end # version suffix
+    def ver; '6.0.0'; end # version suffix
 
     def install
         clang_buildpath = buildpath/'tools/clang'
