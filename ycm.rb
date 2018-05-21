@@ -35,11 +35,11 @@ class Ycm < Formula
         cmake = "cmake"
 
         #if built from source with brew
-        #clang_path = Formula["llvm"].opt_prefix
+        clang_path = Formula["llvm"].opt_prefix/"lib/llvm"
 
         #on mac this is a link to downloaded compiled version
-        clang_path = var/"llvm60" #mac
-        cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
+        #clang_path = var/"llvm60" #mac
+        #cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
 
         python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
         python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
@@ -73,7 +73,6 @@ class Ycm < Formula
             system "#{cmake}", "-G", "Unix Makefiles", buildpath/"third_party/ycmd/third_party/cregex", *args
             system "#{cmake}", "--build", ".", "--target", "_regex", "--config", "Release"
         end
-#cmake -G "<generator>" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/cregex
 
 
 	(prefix/"ycm").install Dir[buildpath/"*"]
