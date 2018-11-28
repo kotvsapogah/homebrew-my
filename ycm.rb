@@ -37,11 +37,18 @@ class Ycm < Formula
         #if built from source with brew
         clang_path = Formula["llvm"].opt_prefix/"lib/llvm"
 
-        #on mac this is a link to downloaded compiled version
-        #clang_path = var/"llvm60"
+        ##on mac this is a link to downloaded compiled version
+        ##but on mojave system clang is good too
+        ##clang_path = var/"llvm60"
+        ##on mac mojave system vim builded with +python/dyn, so python loaded from path
+        ##if you have python@2 installed than you will be using system vim+brew python2 and so different versions
+        ##new brew vim build with only python3
+        ##so use old vim formulae
+        ##(ins)[o.ryabukhin@p [] Formula] (master)$ pwd
+        ##/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+        ##git checkout 3613190d89 -- vim.rb
+        ##brew install --with-python@2 vim
         #cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
-        #on mac mojave system vim builded with +python/dyn, so python loaded from path
-        #if you have python@2 installed than you will be using system vim+brew python2 and so different versions
 
         python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
         python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
