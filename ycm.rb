@@ -38,8 +38,10 @@ class Ycm < Formula
         clang_path = Formula["llvm"].opt_prefix/"lib/llvm"
 
         #on mac this is a link to downloaded compiled version
-        #clang_path = var/"llvm60" #mac
+        #clang_path = var/"llvm60"
         #cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
+        #on mac mojave system vim builded with +python/dyn, so python loaded from path
+        #if you have python@2 installed than you will be using system vim+brew python2 and so different versions
 
         python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
         python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
