@@ -6,8 +6,11 @@ class Ycm < Formula
     #url "https://github.com/Valloric/YouCompleteMe", :using => :git, :revision => "65765ef32b0288b35a022373f8e04c66b7764b2b" 
     #version "4.0.0"
 
-    url "https://github.com/Valloric/YouCompleteMe", :using => :git, :revision => "8e448920c9541811fc76f3d3de0941d3c8eee604" 
-    version "6.0.0"
+    #url "https://github.com/Valloric/YouCompleteMe", :using => :git, :revision => "8e448920c9541811fc76f3d3de0941d3c8eee604" 
+    #version "6.0.0"
+
+    url "https://github.com/Valloric/YouCompleteMe", :using => :git, :revision => "cf4a76acaeed27eb3ca1dca5adf1115b6abbcfa3" 
+    version "7.0.0"
 
     #depends_on "kotvsapogah/my/llvm"
     #depends_on "llvm38"
@@ -28,7 +31,7 @@ class Ycm < Formula
             ext = "so"
         end
 
-        python = "#{HOMEBREW_PREFIX}/bin/python2"
+        python = "#{HOMEBREW_PREFIX}/bin/python3"
 
         #docker
         clang_path = "/opt/llvm-4.0.0"
@@ -41,19 +44,12 @@ class Ycm < Formula
         ##but on mojave system clang is good too
         ##clang_path = var/"llvm60"
         ##on mac mojave system vim builded with +python/dyn, so python loaded from path
-        ##if you have python@2 installed than you will be using system vim+brew python2 and so different versions
-        ##new brew vim build with only python3
-        ##so use old vim formulae
-        ##(ins)[o.ryabukhin@p [] Formula] (master)$ pwd
-        ##/usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
-        ##git checkout 3613190d89 -- vim.rb
-        ##brew install --with-python@2 vim
         #cmake = "#{HOMEBREW_PREFIX}/bin/cmake"
 
-        python_prefix = `#{python} -c "import sys; print sys.prefix"`.chomp
-        python_includedir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_python_inc()"`.chomp
-        python_libdir = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('LIBDIR')"`.chomp
-        python_version = `#{python} -c "from distutils import sysconfig; print sysconfig.get_config_var('VERSION')"`.chomp
+        python_prefix = `#{python} -c "import sys; print(sys.prefix)"`.chomp
+        python_includedir = `#{python} -c "from distutils import sysconfig; print(sysconfig.get_python_inc())"`.chomp
+        python_libdir = `#{python} -c "from distutils import sysconfig; print(sysconfig.get_config_var('LIBDIR'))"`.chomp
+        python_version = `#{python} -c "from distutils import sysconfig; print(sysconfig.get_config_var('VERSION'))"`.chomp
         python_library = "#{python_libdir}/libpython#{python_version}.#{ext}" 
         ohai "Python prefix: ", python_prefix
         ohai "Python include: ", python_includedir
@@ -66,7 +62,7 @@ class Ycm < Formula
             "-DPYTHON_LIBRARY=#{python_library}",
             "-DPYTHON_INCLUDE_DIR=#{python_includedir}",
             "-DUSE_SYSTEM_LIBCLANG=ON"
-            # "-DPATH_TO_LLVM_ROOT=#{clang_path}"
+            #"-DPATH_TO_LLVM_ROOT=#{clang_path}"
             #"-DEXTERNAL_LIBCLANG_PATH=#{clang_path}",
         ]
 
